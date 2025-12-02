@@ -1,0 +1,24 @@
+<h1 style="background-color:#6f42c1">CREATE YOUR ASTROLOGICAL PROFILE</h1>
+
+  <%= form_with model: @profile, local: true do |f| %>
+
+<div>
+<div>
+  <%= f.label :birth_datetime, "Birth Date & Time" %>
+  <%= f.datetime_select :birth_datetime, start_year: Date.today.year, end_year: 1940 %>
+</div>
+
+ <div class="mt-4">
+  <%= f.label :birth_city, "Birth City" %>
+  <%= f.text_field :birth_city %>
+</div>
+
+<div class="mt-4">
+  <%= f.label :birth_country, "Birth Country" %>
+  <%= f.text_field :birth_country %>
+</div>
+
+<%= f.submit "Save Profile", class: "mt-4" %>
+<% end %>
+
+</div>
