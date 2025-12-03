@@ -4,6 +4,14 @@ belongs_to :user
 validates :reading_type, presence: true
 validates :content, presence: true
 validates :date, presence: true
-validates :category_Tarot, presence: true, inclusion: {in:['love','money','health']}
+
+
+validates :category_tarot,
+            presence: true,
+            if: -> { reading_type == "tarot" }
+
+validates :category_tarot,
+            inclusion: { in: ["love", "money", "health"]},
+            allow_blank: true
 
 end
