@@ -4,7 +4,6 @@ before_action :authenticate_user!
 
 
 def show
-
     @tarot = @reading.reading_type
     @has_tarp = @tarot.present?
 
@@ -12,11 +11,10 @@ end
 
 
 def create
-
 end
 
 
-end
+
 
   def set_profile
     @reading = current_user.profile
