@@ -1,6 +1,7 @@
 <h1 style="background-color:#6f42c1">CREATE YOUR ASTROLOGICAL PROFILE</h1>
 
-  <%= form_with model: @profile, local: true do |f| %>
+<%= form_with model: @profile, url: profile_path, method: :post, local: true do |f| %>
+
 
 <div>
 <div>

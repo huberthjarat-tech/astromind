@@ -1,0 +1,11 @@
+
+<h3 >Your Personalized Natal Chart Awaits</h3>
+<p>
+ Based on your birth information, we will create a personalized natal chart that reveals deep insights about your personality, strengths, life path, and cosmic blueprint powered by AI.
+</p>
+
+<% if @has_natal_chart %>
+  <p><%= @natal_chart %></p>
+<% else %>
+  <%= button_to "Generate", natal_chart_path, method: :post %>
+<% end %>

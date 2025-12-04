@@ -1,12 +1,47 @@
 .navbar-lewagon {
-  justify-content: space-between;
   background: white;
+  position: relative;
+  height: 120px;
+  display: flex;
+  align-items: center;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+
+.navbar-lewagon .container-fluid {
+  position: relative;
+  height: 100%;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+.navbar-lewagon .navbar-brand {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  align-items: stretch !important;
+}
+
+
+.navbar-lewagon .navbar-brand .navbar-logo {
+  max-height: 100px;  //aquí controlas la altura real del logo
+  width: auto;
+  display: block;
+}
+
+
+.login-button {
+  background-color: #6a0dad;  // lila
+  color: white !important;
+  padding: 0.6rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1.1rem;     // aumenta tamaño del texto
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  height: 100%;          // ocupa toda la altura del navbar
+}
+
+.navbar-lewagon {
+  display: flex;
+  align-items: center;
+  height: 120px;          // altura del navbar
 }
