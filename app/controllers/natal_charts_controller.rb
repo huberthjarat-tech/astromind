@@ -11,7 +11,7 @@ class NatalChartsController < ApplicationController
   # POST /natal_chart
 
   def create
-     raise 
+
     if @profile.natal_chart_text.present?   # stop boton Generate-more than once
       redirect_to natal_chart_path, notice: "You already have a natal chart!"
       return
@@ -19,8 +19,27 @@ class NatalChartsController < ApplicationController
 
   #  OpenAI
 
+    chat = RubyLLM.chat.with_temperature(0.7)
+    prompt = <<-PROMPT
+      You are an expert astrologer.
+      Generate a friendly natal chart reading in english based on this user's birth data.
+      Data from the user:
+      - Name: #{@profile.first_name}
+      - Date and time of birth: #{@profile.birth_datetime}
+      - city of birth: #{@profile.birth_city}
+      - Country of birth: #{@profile.birth_country}
 
-    natal_chart_text = ## OPEN AI
+      Write in english, with a warm, positive, and clear tone.
+      - 3 to 5 paragraphs, without lists or bullet points.
+      - Use title to categorize.
+      - Explain personality traits, challenges, and potential.
+      - End with a guiding phrase for the future.
+
+       Return only the reading text, without extra technical explanations
+
+      PROMPT
+    response = chat.ask(prompt)
+    natal_chart_text = response.content
 
 
     # Guardar en el perfil
