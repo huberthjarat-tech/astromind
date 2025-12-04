@@ -78,3 +78,5 @@ group :test do
 end
 
 gem "ruby-openai", "~> 8.3"
+gem "ruby_llm", "~> 1.2.0"
+
