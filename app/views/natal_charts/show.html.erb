@@ -7,5 +7,5 @@
 <% if @has_natal_chart %>
   <p><%= @natal_chart %></p>
 <% else %>
-  <%= button_to "Generate", natal_chart_path, method: :post %>
+  <%= button_to "Generate Now", natal_chart_path, method: :post %>
 <% end %>
