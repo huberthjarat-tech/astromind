@@ -1,0 +1,13 @@
+<div class="banner2">
+
+<h1>🔮 Unlock Your Cosmic Potential</h1>
+<h2>Discover the deepest insights into your destiny and personality with AstroMind's three core services: your personalized guides to the universe.</h2>
+
+    <% if user_signed_in? %>
+      <%= link_to "MY PROFILE", profile_path, class: "btn btn-lg btn-primary" %>
+    <% else %>
+      <%= link_to "REGISTER FOR FREE", new_user_registration_path, class: "btn btn-lg btn-primary" %>
+    <% end %>
+
+
+</div>

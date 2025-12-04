@@ -1,19 +1,24 @@
 class ReadingsController < ApplicationController
+before_action :authenticate_user!
+  before_action :set_reading   # @reading para aplciar a todos las acciones
 
-def index
-end
-
-def new
-end
-
-def create
-  current_user.profile
-end
 
 def show
+
+    @tarot = @reading.reading_type
+    @has_tarp = @tarot.present?
+
 end
 
-def destroy
+
+def create
+
 end
 
+
+end
+
+  def set_profile
+    @reading = current_user.profile
+  end
 end

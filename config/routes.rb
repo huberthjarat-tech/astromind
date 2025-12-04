@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   get 'natal_charts/show'
   get 'natal_charts/create'
+
   devise_for :users
   root to: "pages#home"
-
+  get 'services', to: 'pages#services', as: :services
 
   # resources :profiles, only: [:new, :create, :show, :edit, :update]
   # resources :readings, only: [:index, :show, :new, :create, :destroy]

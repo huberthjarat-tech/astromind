@@ -30,6 +30,7 @@ class NatalChartsController < ApplicationController
       - Country of birth: #{@profile.birth_country}
 
       Write in english, with a warm, positive, and clear tone.
+      -start friendly and mention the name
       - 3 to 5 paragraphs, without lists or bullet points.
       - Use title to categorize.
       - Explain personality traits, challenges, and potential.
