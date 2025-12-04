@@ -24,7 +24,7 @@ class NatalChartsController < ApplicationController
       You are an expert astrologer.
       Generate a friendly natal chart reading in english based on this user's birth data.
       Data from the user:
-      - Name: #{@profile.first_name}
+      - Name: #{current_user.first_name}
       - Date and time of birth: #{@profile.birth_datetime}
       - city of birth: #{@profile.birth_city}
       - Country of birth: #{@profile.birth_country}
