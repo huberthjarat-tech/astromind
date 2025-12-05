@@ -27,7 +27,8 @@ class ReadingsController < ApplicationController
     category = @reading.category_tarot.presence || "love"
 
     prompt = <<~PROMPT
-      Generate a #{category} tarot reading based on this profile:
+      You are an expert astrologer.
+      Generate a #{category} tarot reading based on this profile please use the Celtic Cross and discribe the 10 cards for deep analysis. Start mention the name and the zodiac sign:
      - Name: #{current_user.first_name}
      - Date and time of birth: #{@profile.birth_datetime}
      - city of birth: #{@profile.birth_city}
