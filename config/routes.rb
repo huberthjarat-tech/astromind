@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get 'services', to: 'pages#services', as: :services
   get  "readings/tarot/new",  to: "readings#new_tarot",    as: :new_tarot_reading
   post "readings/tarot",      to: "readings#create_tarot", as: :tarot_readings
+  get  "readings/horoscope/new",  to: "readings#new_horoscope",    as: :new_horoscope_reading
+  post "readings/horoscope",      to: "readings#create_horoscope", as: :horoscope_readings
 
   devise_for :users
   root to: "pages#home"

@@ -3,11 +3,35 @@ class ReadingsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_profile   # @profile para aplciar a todos las acciones
 
+
+ def new_horoscope
+ @reading = Reading.new(reading_type: "horoscope")
+ end
+
+
+ def create_horoscope
+   profile = current_user.profile
+
+       unless profile
+      redirect_to new_profile_path, alert: "Please create your profile first"
+       return
+       end
+
+
+
+
+ end
+
+
+ def show
+ end
+
+ #####################################
+
    #nueva fila vacia
   def new_tarot
     @reading = Reading.new(reading_type: "tarot")
   end
-
 
 
   def create_tarot

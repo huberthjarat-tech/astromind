@@ -2,17 +2,32 @@
 
 <p>Choose the focus of your tarot and click the button.</p>
 
-<%= simple_form_for @reading, url: tarot_readings_path do |f| %>
-  <div class="mb-3">
-    <%= f.input :category_tarot,
-                as: :radio_buttons,
-                collection: [
-                  ['Love',  'love'],
-                  ['Money', 'money'],
-                  ['Health','health']
-                ],
-                label: "Tarot focus" %>
-  </div>
+<div data-controller="loading">
+  <%= simple_form_for @reading, url: tarot_readings_path, html: { "data-action": "submit->loading#show" } do |f| %>
 
-  <%= f.button :submit, "Generate my tarot", class: "btn btn-primary" %>
-<% end %>
+    <div class="mb-3">
+      <%= f.input :category_tarot,
+                  as: :radio_buttons,
+                  collection: [
+                    ['Love',  'love'],
+                    ['Money', 'money'],
+                    ['Health','health']
+                  ],
+                  label: "Tarot focus" %>
+    </div>
+
+    <%# 🔮 BUTTON THAT DISAPPEARS WHEN PROCESSING %>
+    <div data-loading-target="button">
+      <%= f.button :submit, "Generate my tarot", class: "btn btn-primary btn-lg" %>
+    </div>
+
+    <%# ✨ MAGIC UNIVERSE MESSAGE (HIDDEN UNTIL CLICK) %>
+    <div data-loading-target="loading"
+         class="d-none mt-4 text-center"
+         style="font-size: 1.5rem; color: #7A4FFF; font-weight: 600;">
+      ✨ The Universe is working for you… please wait ✨
+      <div class="loadingstyle mt-3" role="status"></div>
+    </div>
+
+  <% end %>
+</div>
