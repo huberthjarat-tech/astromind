@@ -11,6 +11,9 @@
   gap: 3rem;
   padding: 2rem;
   background-color: $gray;
+  background-image:
+  linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  image-url('5.jpg');
 
 
   background-size: cover;
