@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
   get 'natal_charts/show'
   get 'natal_charts/create'
+  get 'services', to: 'pages#services', as: :services
+  get  "readings/tarot/new",  to: "readings#new_tarot",    as: :new_tarot_reading
+  post "readings/tarot",      to: "readings#create_tarot", as: :tarot_readings
 
   devise_for :users
   root to: "pages#home"
-  get 'services', to: 'pages#services', as: :services
+
 
   # resources :profiles, only: [:new, :create, :show, :edit, :update]
   # resources :readings, only: [:index, :show, :new, :create, :destroy]

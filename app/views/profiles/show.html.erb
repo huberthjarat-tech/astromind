@@ -4,7 +4,6 @@
   <div class="card shadow">
     <div class="card-body p-4">
 
-      <!-- Información del usuario -->
       <div class="mb-4">
         <h3>User Information</h3>
         <p><strong>Email:</strong> <%= current_user.email %></p>
@@ -16,7 +15,6 @@
 
       <hr>
 
-      <!-- Información del perfil -->
       <div class="mb-4">
         <h3>Birth Information</h3>
         <p><strong>📅 Birth Date & Time:</strong> <%= @profile.birth_datetime.strftime("%B %d, %Y at %I:%M %p") %></p>
@@ -24,9 +22,9 @@
         <p><strong>🌍 Birth Country:</strong> <%= @profile.birth_country %></p>
       </div>
 
-      <!-- view my natal chart -->
+      
       <div class="d-grid gap-2 mt-4">
-        <%= link_to "🌟 View My Natal Chart", natal_chart_path, class: "btn btn-primary btn-lg" %>
+        <%= link_to "🌟 View My Natal Chart", natal_chart_path, class: "btn btn-primary btn-" %>
       </div>
 
     </div>

@@ -2,16 +2,16 @@
   <div class="container py-5">
     <div class="row align-items-center">
 
-      <div class="col-lg-4 col-md-12 text-center text-lg-start mb-4 mb-lg-0">
+      <div class="col-lg-4 col-md-12 text-center mb-4 mb-lg-0">
         <h1 class="display-5 fw-bold text-white mb-3">
-          🔮 Unlock Your Cosmic Potential
+          Unlock Your Cosmic Potential
         </h1>
-        <p class="lead text-white-50">
+        <p class="lead text-white">
           Discover the deepest insights into your destiny and personality with AstroMind's three core services: your personalized guides to the universe.
         </p>
 
         <% if user_signed_in? %>
-          <%= link_to "Go To My Profile", profile_path, class: "btn btn-primary btn-lg mt-3" %>
+          <%= link_to " 🔮 Go To My Profile", profile_path, class: "btn btn-primary btn-lg mt-3" %>
         <% else %>
           <%= link_to "REGISTER FOR FREE", new_user_registration_path, class: "btn btn-primary btn-lg mt-3" %>
         <% end %>
@@ -25,7 +25,8 @@
               <div class="card-body text-center">
                 <i class="fas fa-star fa-3x mb-3 text-warning"></i>
                 <h3 class="card-title fw-bold">Natal Chart</h3>
-                <p class="card-text">Decode the unique position of the stars at the exact moment of your birth. Understand your core personality and life challenges.</p>
+               <p class="card-text">Decode the unique position of the stars at the exact moment of your birth. Understand your core personality and life challenges.</p>
+                <%= link_to " view", natal_chart_path, class: "btn btn-primary btn-lg mt-3" %>
               </div>
             </div>
           </div>
