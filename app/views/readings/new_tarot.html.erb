@@ -1,0 +1,18 @@
+<h1>Generate your Tarot</h1>
+
+<p>Choose the focus of your tarot and click the button.</p>
+
+<%= simple_form_for @reading, url: tarot_readings_path do |f| %>
+  <div class="mb-3">
+    <%= f.input :category_tarot,
+                as: :radio_buttons,
+                collection: [
+                  ['Love',  'love'],
+                  ['Money', 'money'],
+                  ['Health','health']
+                ],
+                label: "Tarot focus" %>
+  </div>
+
+  <%= f.button :submit, "Generate my tarot", class: "btn btn-primary" %>
+<% end %>

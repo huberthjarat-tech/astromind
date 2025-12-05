@@ -11,7 +11,7 @@ validates :category_tarot,
             if: -> { reading_type == "tarot" }
 
 validates :category_tarot,
-            inclusion: { in: ["love", "money", "health"]},
+            inclusion: { in: ["love", "money", "health"] },
             allow_blank: true
 
 end

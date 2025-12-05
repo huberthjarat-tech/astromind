@@ -1,11 +1,13 @@
 class ReadingsController < ApplicationController
 
   before_action :authenticate_user!
+  before_action :set_profile   # @profile para aplciar a todos las acciones
 
-
+   #nueva fila vacia
   def new_tarot
     @reading = Reading.new(reading_type: "tarot")
   end
+
 
 
   def create_tarot
@@ -26,15 +28,14 @@ class ReadingsController < ApplicationController
 
     prompt = <<~PROMPT
       Generate a #{category} tarot reading based on this profile:
-      Name: #{profile.name}
-      Birthday: #{profile.birthdate}
-      Birth city: #{profile.birth_city}
-      Birth time: #{profile.birth_time}
-
+     - Name: #{current_user.first_name}
+     - Date and time of birth: #{@profile.birth_datetime}
+     - city of birth: #{@profile.birth_city}
+    - Country of birth: #{@profile.birth_country}
       The reading must be written in a friendly conversational style.
     PROMPT
 
-    chat     = RubyLLM::Chat.new(model: "gpt-4o-mini")
+    chat     = RubyLLM::Chat.new
     response = chat.ask(prompt)
     @reading.content = response.content
 
@@ -47,6 +48,11 @@ class ReadingsController < ApplicationController
     end
   end
 
+  def show
+    @reading = current_user.readings.find(params[:id])
+  end
+
+
   private
 
 
@@ -54,4 +60,8 @@ class ReadingsController < ApplicationController
     params.require(:reading).permit(:category_tarot)
   end
 
+
+  def set_profile
+    @profile = current_user.profile
+  end
 end

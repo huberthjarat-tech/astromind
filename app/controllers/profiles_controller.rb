@@ -29,3 +29,7 @@ before_action :authenticate_user!        #must be login
     params.require(:profile).permit(:birth_datetime, :birth_city, :birth_country)
   end
 end
+      - Name: #{current_user.first_name}
+      - Date and time of birth: #{@profile.birth_datetime}
+      - city of birth: #{@profile.birth_city}
+      - Country of birth: #{@profile.birth_country}
