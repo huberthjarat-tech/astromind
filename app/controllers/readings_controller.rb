@@ -23,8 +23,6 @@ class ReadingsController < ApplicationController
  end
 
 
- def show
- end
 
  #####################################
 
