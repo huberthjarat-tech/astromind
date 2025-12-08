@@ -1,29 +1,75 @@
 class ReadingsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :set_profile   # @profile para aplciar a todos las acciones
+  before_action :set_reading, only: [:show, :destroy]
+  before_action :set_profile, only: [:create_tarot, :create_horoscope]
 
 
- def new_horoscope
+#General readings
+
+  def index
+    @readings = current_user.readings.order(created_at: :desc)
+  end
+
+  def show
+    if @reading.reading_type == "tarot"
+      render :show_tarot
+    elsif @reading.reading_type == "horoscope"
+      render :show_horoscope
+    else
+      render :show
+    end
+  end
+
+  def destroy
+    @reading.destroy
+    redirect_to readings_path, notice: "Reading deleted"
+  end
+
+
+
+#GET
+  def new_horoscope
  @reading = Reading.new(reading_type: "horoscope")
- end
+  end
+
+#POST
+  def create_horoscope
 
 
- def create_horoscope
-   profile = current_user.profile
-
-       unless profile
+   unless @profile
       redirect_to new_profile_path, alert: "Please create your profile first"
-       return
-       end
+    return
+   end
 
+  @reading = current_user.readings.build
+  @reading.reading_type = "horoscope"
+  @reading.date = Date.today
 
+  prompt = <<~PROMPT
+        You are an expert astrologer. Generate a daily horoscope for this user based on their natal chart:
+      - Date and time of birth: #{@profile.birth_datetime}
+      - City of birth: #{@profile.birth_city}
+      - Country of birth: #{@profile.birth_country}
 
+      The horoscope should:
+      - Be written in a friendly and positive tone
+      - Mention emotional, work and health aspects.
+      - Be max. 2 short paragraphs for the 3 categories.
+      - include the title emotional life , health life and work life to separate the text.
+       PROMPT
 
- end
+    chat     = RubyLLM::Chat.new
+    response = chat.ask(prompt)
 
+    @reading.content = response.content
 
-
+    if @reading.save
+      redirect_to reading_path(@reading), notice: "Horoscope generated successfully!"
+     else
+      render :new_horoscope, status: :unprocessable_entity
+     end
+  end
  #####################################
 
    #nueva fila vacia
@@ -65,26 +111,28 @@ class ReadingsController < ApplicationController
     # 4. Guardar y redirigir
     if @reading.save
       redirect_to reading_path(@reading), notice: "Tarot generated successfully!"
-    else
+      else
       # Usar 'new_tarot' para renderizar el formulario con errores
       render :new_tarot, status: :unprocessable_entity
+      end
     end
-  end
 
-  def show
+  #def show
+   # @reading = current_user.readings.find(params[:id])
+  #end
+
+end
+
+private
+
+  def set_reading
     @reading = current_user.readings.find(params[:id])
   end
-
-
-  private
-
 
   def reading_params
     params.require(:reading).permit(:category_tarot)
   end
 
-
   def set_profile
-    @profile = current_user.profile
+   @profile = current_user.profile
   end
-end

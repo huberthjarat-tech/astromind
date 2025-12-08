@@ -1,0 +1,13 @@
+<h1>Your Daily Horoscope</h1>
+
+<p>
+  Click the button and we’ll generate today’s horoscope
+  based on your birth data.
+</p>
+
+<%= simple_form_for @reading, url: horoscope_readings_path do |f| %>
+  <%# No pedimos categoría, es general del día %>
+  <%= f.button :submit, "Generate my horoscope", class: "btn btn-primary" %>
+<% end %>
+
+

@@ -1,0 +1,9 @@
+<h1>Daily Horoscope</h1>
+
+<p><strong>Date:</strong> <%= @reading.date %></p>
+
+<div class="reading-content">
+  <%= simple_format @reading.content %>
+</div>
+
+<%= link_to "Back to readings", services_path, class: "btn btn-outline-secondary mt-3" %>
