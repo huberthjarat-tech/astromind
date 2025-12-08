@@ -33,7 +33,7 @@ class ReadingsController < ApplicationController
     end
   end
 
-  
+
 #General readings
 
   def index
@@ -52,7 +52,7 @@ class ReadingsController < ApplicationController
 
   def destroy
     @reading.destroy
-    redirect_to readings_path, notice: "Reading deleted"
+    redirect_to dashboard_path, notice: "Reading deleted"
   end
 
 
@@ -124,14 +124,42 @@ class ReadingsController < ApplicationController
     category = @reading.category_tarot.presence || "love"
 
     prompt = <<~PROMPT
-      You are an expert astrologer.
-      Generate a #{category} tarot reading based on this profile please use the Celtic Cross and discribe the 10 cards for deep analysis. Start mention the name and the zodiac sign:
-     - Name: #{current_user.first_name}
-     - Date and time of birth: #{@profile.birth_datetime}
-     - city of birth: #{@profile.birth_city}
+    You are an expert astrologer.
+    Generate a #{category} tarot reading based on this profile using the Celtic Cross spread.
+
+    Profile:
+    - Name: #{current_user.first_name}
+    - Date and time of birth: #{@profile.birth_datetime}
+    - City of birth: #{@profile.birth_city}
     - Country of birth: #{@profile.birth_country}
-      The reading must be written in a friendly conversational style.
-    PROMPT
+
+    IMPORTANT FORMATTING RULES:
+    1. Start with a friendly greeting mentioning the user's name and zodiac sign
+    2. For each of the 10 cards, use EXACTLY this format:
+
+       1. Position Name — Card Name
+       [Description of the card's meaning]
+
+       2. Position Name — Card Name
+       [Description of the card's meaning]
+
+       And so on for all 10 cards.
+
+    3. Each card number MUST be on its own line
+    4. Use a clear line break between cards
+    5. Write in a friendly, conversational style
+    6. Do NOT use asterisks (**) or hashtags (###) in your response
+
+    Example format:
+    Hello [Name]! Based on your birth details...
+
+    1. The Present Situation — The Lovers
+    This card sitting at the heart of your reading suggests...
+
+    2. The Challenge — The Five of Cups
+    Sometimes, past disappointments or regrets...
+
+     PROMPT
 
     chat     = RubyLLM::Chat.new
     response = chat.ask(prompt)

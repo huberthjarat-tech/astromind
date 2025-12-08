@@ -45,3 +45,15 @@
   align-items: center;
   height: 120px;          // altura del navbar
 }
+.nav-item {
+  margin: 0 5px; // Añade un poco de espacio alrededor del elemento <li>
+}
+.nav-item .nav-link {
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 5px; // Bordes redondeados para el fondo
+}
+.nav-item .nav-link:hover {
+  // Usamos una función de color de SASS para aligerar o oscurecer el color $primary
+  background-color: $primary;
+  color: $light-gray; // El texto se pone del color principal
+}

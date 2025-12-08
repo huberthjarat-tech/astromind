@@ -90,3 +90,32 @@
   width: 20px;
   height: 20px;
 }
+
+/* boton dashbaord */
+
+/* CONTENEDOR DE LOS BOTONES */
+.actions-cell {
+  white-space: nowrap;       /* Mantiene todo en una sola línea */
+}
+
+/* BOTONES BASE */
+.action-btn {
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  margin-left: 6px;
+  text-decoration: none !important;
+  border: none;
+  display: inline-block;
+  color: white !important;
+}
+
+/* VIEW — FONDO DORADO */
+.view-btn {
+  background-color: #B8860B !important;
+}
+
+/* DELETE — FONDO ROJO OSCURO */
+.delete-btn {
+  background-color: $primary !important;
+}

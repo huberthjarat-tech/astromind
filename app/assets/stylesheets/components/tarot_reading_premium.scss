@@ -393,3 +393,135 @@ body.has-stars-canvas {
   margin: 0;
   padding: 0;
 }
+
+/* Sección completa de cada carta */
+.tarot-card-section {
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Header que contiene número + título */
+.tarot-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(168, 85, 247, 0.3);
+}
+
+/* Número de la carta - MORADO */
+.tarot-card-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #a855f7; /* Morado de AstroMind */
+  margin: 0;
+  line-height: 1;
+  text-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
+  min-width: 3.5rem;
+  flex-shrink: 0;
+}
+
+/* Título de la carta - MORADO */
+.tarot-card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #a855f7; /* Morado de AstroMind */
+  margin: 0;
+  line-height: 1.3;
+  font-family: 'Georgia', serif;
+  text-shadow: 0 2px 10px rgba(168, 85, 247, 0.4);
+  flex: 1;
+}
+
+/* Contenido de cada carta */
+.tarot-card-content {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: white;
+  text-align: justify;
+  padding-left: 1rem;
+}
+
+.tarot-card-content p {
+  margin-bottom: 1.2rem;
+}
+
+/* Eliminar margen del primer párrafo de saludo */
+.premium-reading-text > p:first-of-type {
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+/* ============================================ */
+/* VARIANTES DE COLOR MORADO */
+/* ============================================ */
+
+/* Si quieres usar el morado más oscuro */
+.tarot-card-number.dark-purple,
+.tarot-card-title.dark-purple {
+  color: #7c3aed; /* Morado más oscuro */
+  text-shadow: 0 0 20px rgba(124, 58, 237, 0.6);
+}
+
+/* Si quieres usar el morado más claro */
+.tarot-card-number.light-purple,
+.tarot-card-title.light-purple {
+  color: #c084fc; /* Morado más claro */
+  text-shadow: 0 0 20px rgba(192, 132, 252, 0.6);
+}
+
+/* ============================================ */
+/* RESPONSIVE */
+/* ============================================ */
+@media (max-width: 768px) {
+  .tarot-card-section {
+    margin-top: 2rem;
+  }
+
+  .tarot-card-header {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .tarot-card-number {
+    font-size: 2rem;
+    min-width: auto;
+  }
+
+  .tarot-card-title {
+    font-size: 1.2rem;
+  }
+
+  .tarot-card-content {
+    font-size: 1rem;
+    padding-left: 0;
+    line-height: 1.7;
+  }
+}
+
+/* ============================================ */
+/* ANIMACIÓN OPCIONAL */
+/* ============================================ */
+.tarot-card-section {
+  animation: fadeInCard 0.5s ease-out;
+}
+
+@keyframes fadeInCard {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Retraso escalonado para cada carta */
+.tarot-card-section:nth-child(1) { animation-delay: 0.1s; }
+.tarot-card-section:nth-child(2) { animation-delay: 0.2s; }
+.tarot-card-section:nth-child(3) { animation-delay: 0.3s; }
+.tarot-card-section:nth-child(4) { animation-delay: 0.4s; }
+.tarot-card-section:nth-child(5) { animation-delay: 0.5s; }
