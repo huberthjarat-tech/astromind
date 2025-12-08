@@ -1,0 +1,92 @@
+
+.astro-container {
+  background: #000;
+  min-height: 100vh;
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Card with purple cosmic glow */
+.astro-card {
+  background: #0d0d0f;
+  padding: 40px;
+  width: 100%;
+  max-width: 650px;
+  border-radius: 25px;
+  position: relative;
+  color: white;
+  box-shadow: 0px 0px 40px rgba(140, 0, 255, 0.25);
+}
+
+/* Purple glow bottom area */
+.astro-card::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 80px;
+  background: radial-gradient(ellipse at bottom, rgba(150, 0, 255, 0.5), transparent);
+  filter: blur(35px);
+}
+
+/* Title */
+.astro-header h1 {
+  font-size: 2.6rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+
+}
+
+/* Subtitle */
+.astro-header p {
+  font-size: 1.1rem;
+  opacity: 0.8;
+  margin-bottom: 35px;
+  line-height: 1.6;
+}
+
+/* Button */
+.astro-button {
+  background: linear-gradient(90deg, #581c87, #9b3dff);
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: none;
+  transition: 0.3s;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+}
+
+.astro-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(160, 60, 255, 0.5);
+}
+
+.custom-radio-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+
+.custom-radio-item {
+  display: flex;
+  align-items: center; /* centra el circulito con el texto */
+  gap: 20px;           /* espacio entre el circulito y el texto */
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+/* Cambiar tamaño del radio */
+.custom-radio-item input[type="radio"] {
+  width: 20px;
+  height: 20px;
+}

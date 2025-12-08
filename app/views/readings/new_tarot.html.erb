@@ -1,33 +1,59 @@
-<h1>Generate your Tarot</h1>
-
-<p>Choose the focus of your tarot and click the button.</p>
-
-<div data-controller="loading">
-  <%= simple_form_for @reading, url: tarot_readings_path, html: { "data-action": "submit->loading#show" } do |f| %>
-
-    <div class="mb-3">
-      <%= f.input :category_tarot,
-                  as: :radio_buttons,
-                  collection: [
-                    ['Love',  'love'],
-                    ['Money', 'money'],
-                    ['Health','health']
-                  ],
-                  label: "Tarot focus" %>
+<div class="astro-container">
+  <div class="astro-card">
+    <div class="astro-header" style="text-align: center">
+      <h1>Generate your Tarot</h1>
+      <p>Choose the focus of your tarot and click the button.</p>
     </div>
 
-    <%# BUTTON THAT DISAPPEARS WHEN PROCESSING %>
-    <div data-loading-target="button">
-      <%= f.button :submit, "Generate my tarot", class: "btn btn-primary btn-lg" %>
-    </div>
+    <%# ---------------------------------------------------- %>
+    <%# CONTROLLER PRINCIPAL DE STIMULUS %>
+    <%# ---------------------------------------------------- %>
+    <div data-controller="loading">
 
-    <%# MAGIC UNIVERSE MESSAGE (HIDDEN UNTIL CLICK) %>
-    <div data-loading-target="loading"
-         class="d-none mt-4 text-center"
-         style="font-size: 1.5rem; color: #7A4FFF; font-weight: 600;">
-      ✨ The Universe is working for you… please wait ✨
-      <div class="loadingstyle mt-3" role="status"></div>
-    </div>
+      <%# FORMULARIO CON TURBO DESACTIVADO Y ACCIÓN DE SUBMIT %>
+      <%= simple_form_for @reading,
+          url: tarot_readings_path,
+          html: {
+            "data-action": "submit->loading#show",
+            "data-turbo": "false"
+          } do |f| %>
 
-  <% end %>
+        <%# SELECCIÓN DE CATEGORÍA %>
+        <div class="astro-actions mb-3 custom-radio-list custom-radio-item custom-radio-group"
+             style="text-align: center">
+          <%= f.input :category_tarot,
+                as: :radio_buttons,
+                collection: [
+                  ['Love',  'love'],
+                  ['Money', 'money'],
+                  ['Health','health']
+                ],
+                label: "🔮 My future related with...",
+                required: true %>
+        </div>
+
+        <%# BOTÓN DE SUBMIT (TARGET) %>
+        <div class="text-center" data-loading-target="button">
+          <%= f.button :submit,
+              "Generate my tarot",
+              class: "astro-button" %>
+        </div>
+
+      <% end %>
+
+      <%# MENSAJE DE CARGA (TARGET), OCULTO POR DEFECTO %>
+      <div data-loading-target="loading"
+           class="d-none mt-4 text-center light-gray-text"
+           style="font-size: 1.5rem; font-weight: 600;">
+        ✨ The Universe is working for you… please wait ✨
+
+        <%# SPINNER DE BOOTSTRAP %>
+        <div class="spinner-border text-primary mt-3" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+
+    </div> <%# Cierre del data-controller="loading" %>
+
+  </div>
 </div>

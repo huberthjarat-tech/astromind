@@ -1,13 +1,14 @@
-<h1>Your Daily Horoscope</h1>
+<div class="astro-container">
+  <div class="astro-card">
+    <div class="astro-header" style ="text-align: center">
+      <h1>Your Daily Horoscope</h1>
+      <p>Click the button and we’ll generate today’s horoscope based on your birth data.</p>
+    </div>
 
-<p>
-  Click the button and we’ll generate today’s horoscope
-  based on your birth data.
-</p>
-
-<%= simple_form_for @reading, url: horoscope_readings_path do |f| %>
-  <%# No pedimos categoría, es general del día %>
-  <%= f.button :submit, "Generate my horoscope", class: "btn btn-primary" %>
-<% end %>
-
-
+    <%= simple_form_for @reading, url: horoscope_readings_path do |f| %>
+      <div class="astro-actions" style="text-align: center">
+        <%= f.button :submit, "Generate my horoscope", class: "astro-button" %>
+      </div>
+    <% end %>
+  </div>
+</div>
