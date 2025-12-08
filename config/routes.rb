@@ -8,12 +8,11 @@ Rails.application.routes.draw do
   #HOROSCOPE
   get  "readings/horoscope/new",  to: "readings#new_horoscope",    as: :new_horoscope_reading
   post "readings/horoscope",      to: "readings#create_horoscope", as: :horoscope_readings
-
+  #DASHBOARD
+  get "dashboard", to: "readings#dashboard", as: :dashboard
   devise_for :users
   root to: "pages#home"
 
-
-  # resources :profiles, only: [:new, :create, :show, :edit, :update]
 
 resource :profile, only: [:new, :create, :show]
 resources :readings, only: [:index, :show, :new, :create, :destroy]

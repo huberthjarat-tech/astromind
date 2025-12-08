@@ -5,6 +5,35 @@ class ReadingsController < ApplicationController
   before_action :set_profile, only: [:create_tarot, :create_horoscope]
 
 
+  def dashboard
+    # 1. Leer parámetros del formulario (pueden venir vacíos)
+    @selected_month       = params[:month]
+    @selected_year        = params[:year]
+    @selected_type        = params[:reading_type]    # "tarot" o "horoscope"
+    @selected_category    = params[:category_tarot]  # "love", "money", "health"
+
+    # 2. Empezamos con todas las lecturas del usuario
+    @readings = current_user.readings.order(date: :desc)
+
+    # 3. Filtrar por mes y año si están presentes
+    if @selected_year.present? && @selected_month.present?
+      start_date = Date.new(@selected_year.to_i, @selected_month.to_i, 1)
+      end_date   = start_date.end_of_month
+      @readings  = @readings.where(date: start_date..end_date)
+    end
+
+    # 4. Filtrar por tipo de lectura (tarot / horoscope)
+    if @selected_type.present?
+      @readings = @readings.where(reading_type: @selected_type)
+    end
+
+    # 5. Filtrar por categoría de tarot (solo tiene sentido si es tarot)
+    if @selected_category.present?
+      @readings = @readings.where(category_tarot: @selected_category)
+    end
+  end
+
+  
 #General readings
 
   def index
@@ -116,10 +145,6 @@ class ReadingsController < ApplicationController
       render :new_tarot, status: :unprocessable_entity
       end
     end
-
-  #def show
-   # @reading = current_user.readings.find(params[:id])
-  #end
 
 end
 

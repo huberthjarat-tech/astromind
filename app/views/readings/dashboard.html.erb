@@ -1,0 +1,136 @@
+<div class="container mt-4">
+  <h1 class="mb-3">My AstroMind Dashboard</h1>
+  <p class="text-muted">
+    Review all your <strong>tarot</strong> and <strong>horoscope</strong> readings,
+    and filter by month or focus.
+  </p>
+
+  <div class="row mt-4">
+    <!-- PANEL DE FILTROS -->
+    <div class="col-md-3 mb-4">
+      <div class="card">
+        <div class="card-header">
+          Filters
+        </div>
+        <div class="card-body">
+          <%= form_with url: dashboard_path, method: :get, local: true do |f| %>
+            <!-- Mes -->
+            <div class="mb-3">
+              <%= label_tag :month, "Month" %>
+              <%= select_tag :month,
+                    options_for_select(
+                      [
+                        ["All", ""],
+                        ["January", 1],
+                        ["February", 2],
+                        ["March", 3],
+                        ["April", 4],
+                        ["May", 5],
+                        ["June", 6],
+                        ["July", 7],
+                        ["August", 8],
+                        ["September", 9],
+                        ["October", 10],
+                        ["November", 11],
+                        ["December", 12]
+                      ],
+                      @selected_month
+                    ),
+                    class: "form-select" %>
+            </div>
+
+            <!-- Año -->
+            <div class="mb-3">
+              <%= label_tag :year, "Year" %>
+              <%= select_tag :year,
+                    options_for_select(
+                      [
+                        ["All", ""],
+                        [Date.today.year,  Date.today.year],
+                        [Date.today.year - 1, Date.today.year - 1]
+                      ],
+                      @selected_year
+                    ),
+                    class: "form-select" %>
+            </div>
+
+            <!-- Tipo de lectura -->
+            <div class="mb-3">
+              <%= label_tag :reading_type, "Reading type" %>
+              <%= select_tag :reading_type,
+                    options_for_select(
+                      [
+                        ["All", ""],
+                        ["Tarot", "tarot"],
+                        ["Horoscope", "horoscope"]
+                      ],
+                      @selected_type
+                    ),
+                    class: "form-select" %>
+            </div>
+
+            <!-- Categoría tarot -->
+            <div class="mb-3">
+              <%= label_tag :category_tarot, "Tarot focus" %>
+              <%= select_tag :category_tarot,
+                    options_for_select(
+                      [
+                        ["All", ""],
+                        ["Love",  "love"],
+                        ["Money", "money"],
+                        ["Health","health"]
+                      ],
+                      @selected_category
+                    ),
+                    class: "form-select" %>
+            </div>
+
+            <%= f.submit "Apply filters", class: "btn btn-primary w-100" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- LISTA DE LECTURAS -->
+    <div class="col-md-9">
+      <% if @readings.any? %>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Focus</th>
+              <th>Preview</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @readings.each do |reading| %>
+              <tr>
+                <td><%= reading.date %></td>
+                <td><%= reading.reading_type.capitalize %></td>
+                <td>
+                  <% if reading.reading_type == "tarot" %>
+                    <%= reading.category_tarot&.capitalize || "-" %>
+                  <% else %>
+                    General
+                  <% end %>
+                </td>
+                <td>
+                  <%= truncate(reading.content.to_s, length: 80) %>
+                </td>
+                <td>
+                  <%= link_to "View", reading_path(reading), class: "btn btn-sm btn-outline-primary" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <div class="alert alert-info">
+          No readings found for this filter. Try changing the month or type.
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
