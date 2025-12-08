@@ -93,9 +93,6 @@ class StarsCanvas {
   }
 }
 
-// Exportar para usar en Rails
-export default StarsCanvas;
-
 // Auto-inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('stars-canvas');

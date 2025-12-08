@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   get  "readings/horoscope/new",  to: "readings#new_horoscope",    as: :new_horoscope_reading
   post "readings/horoscope",      to: "readings#create_horoscope", as: :horoscope_readings
   #DASHBOARD
-  get "dashboard", to: "readings#dashboard", as: :dashboard
+  get "readings/dashboard", to: "readings#dashboard", as: :dashboard
+  
   devise_for :users
   root to: "pages#home"
 

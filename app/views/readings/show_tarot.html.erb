@@ -1,6 +1,65 @@
-<div>
-  <%= simple_format @reading.content %>
-        <div class="d-grid gap-2 mt-4">
-        <%= link_to "🌟 More Services",services_path , class: "btn btn-primary " %>
+<canvas id="stars-canvas" class="stars-background"></canvas>
+
+
+<div class="premium-reading-wrapper">
+
+  <div class="premium-reading-card">
+
+    <div class="premium-header">
+      <div class="cosmic-decoration">✨ 🌙 ⭐ 🌙 ✨</div>
+      <h1 class="premium-title">Your Cosmic Reading</h1>
+      <div class="premium-subtitle">
+        A glimpse into your <%= @reading.category_tarot.capitalize %> journey
       </div>
+      <div class="premium-date">
+        <%= @reading.date.strftime("%B %d, %Y") %>
+      </div>
+    </div>
+
+    <%# ============================================ %>
+    <%# CONTENIDO CON EFECTO GLASSMORPHISM %>
+    <%# ============================================ %>
+    <div class="premium-content-glass">
+
+      <%# SALUDO PERSONALIZADO %>
+      <div class="premium-greeting">
+        Dear <span class="highlight-name"><%= current_user.first_name || 'Seeker' %></span>,
+      </div>
+
+      <%# TEXTO DE LA LECTURA %>
+      <div class="premium-reading-text">
+        <%= simple_format @reading.content, class: "premium-paragraph" %>
+      </div>
+
+      <%# FIRMA MÍSTICA %>
+      <div class="premium-signature">
+        <div class="signature-line"></div>
+        <div class="signature-text">May the stars guide your path</div>
+        <div class="signature-line"></div>
+      </div>
+
+    </div>
+
+    <%# ============================================ %>
+    <%# BOTONES DE ACCIÓN FLOTANTES %>
+    <%# ============================================ %>
+<div class="premium-actions">
+  <%= link_to services_path, class: "premium-action-btn primary" do %>
+    <span class="btn-icon">🌟</span>
+    <span class="btn-text">Explore More Services</span>
+  <% end %>
+
+  <%= link_to root_path, class: "premium-action-btn secondary" do %>
+    <span class="btn-icon">🏠</span>
+    <span class="btn-text">Back to Home</span>
+  <% end %>
 </div>
+
+  </div>
+
+</div>
+
+<%# Agregar clase al body para el canvas %>
+<% content_for :body_class, 'has-stars-canvas' %>
+
+<!-- Solo cambiar la sección de botones -->
