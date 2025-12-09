@@ -4,3 +4,57 @@
   right: 16px;
   z-index: 1000;
 }
+.custom-flash {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+ 
+  z-index: 9999;
+
+  min-width: 320px;
+  max-width: 70%;
+  padding: 15px 22px;
+
+  border-radius: 14px;
+  font-size: 1rem;
+  text-align: center;
+
+  box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+  opacity: 1;
+  transition: opacity 1s ease-out;
+
+  /* Nuevo color AstroMind */
+  background: linear-gradient(135deg, #3d1b76, #6b29cc);
+  color: #ffffff;
+    display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Fade-out animation after 4 seconds */
+.custom-flash.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease-out;
+}
+
+.flash-close-btn {
+  background-color: #ffffff;        /* círculo blanco */
+  color: #431f91;                   /* morado AstroMind para la X */
+  border: none;
+  border-radius: 999px;             /* círculo perfecto */
+  width: 32px;                      /* tamaño del círculo */
+  height: 32px;
+  display: inline-flex;             /* centrar la X dentro */
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;                  /* tamaño de la X */
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 16px;                /* espacio respecto al texto */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.flash-close-btn:hover {
+  background-color: #f5f1ff;        /* blanquito con toque lila */
+}

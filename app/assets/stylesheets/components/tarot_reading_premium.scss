@@ -206,10 +206,11 @@
 }
 
 .premium-action-btn.primary {
-  background: linear-gradient(135deg, #6a0dad 0%, #6366f1 100%);
+  background: linear-gradient(135deg, #581c87 60%, #6366f1 100%);
   color: white;
   box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
 }
+
 
 .premium-action-btn.secondary {
   background: rgba(255, 255, 255, 0.1);
@@ -219,6 +220,14 @@
   -webkit-backdrop-filter: blur(10px);
 }
 
+
+.premium-action-btn.home {
+  background: linear-gradient(135deg, #581c87 60%, #6366f1 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+  align-items: center;
+
+}
 .premium-action-btn:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 35px rgba(139, 92, 246, 0.5);

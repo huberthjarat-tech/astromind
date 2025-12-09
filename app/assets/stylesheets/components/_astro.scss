@@ -119,3 +119,40 @@
 .delete-btn {
   background-color: $primary !important;
 }
+
+.action-btn-container {
+  display: flex;
+  gap: 6px; /* Espacio entre View y X */
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* Botón View reducido */
+.view-btn {
+  background-color: #b5892f !important; /* dorado astromind */
+  color: white !important;
+  font-size: 0.85rem;
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: none;
+  height: 32px;
+  line-height: 20px;
+}
+
+/* Botón X pequeño */
+.delete-btn {
+  background-color: #4c268f !important; /* morado */
+  color: white !important;
+  font-size: 0.9rem;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: none;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-btn:hover {
+  background-color: #381a6e !important;
+}

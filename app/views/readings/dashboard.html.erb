@@ -121,10 +121,11 @@
                 </td>
 
                 <td class="text-end">
+                  <div class="action-btn-container">
 
                     <%= link_to "View",
                                 reading_path(reading),
-                                class: "btn action-btn view-btn" %>
+                                class: "view-btn" %>
 
                     <%= link_to "✖",
                                 reading_path(reading),
@@ -132,9 +133,9 @@
                                   turbo_method: :delete,
                                   turbo_confirm: "Are you sure you want to delete this reading?"
                                 },
-                                class: "btn action-btn delete-btn" %>
+                                class: "delete-btn" %>
+                    </div>
                 </td>
-
 
               </tr>
             <% end %>

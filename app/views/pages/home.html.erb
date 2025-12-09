@@ -5,9 +5,9 @@
 <h2>Daily horoscope and tarot reading powered by AI</h2>
 
     <% if user_signed_in? %>
-      <%= link_to "MY FUTURE", services_path, class: "btn astro-button" %>
+      <%= link_to "MY FUTURE", services_path, class: "premium-action-btn primary" %>
     <% else %>
-      <%= link_to "REGISTER FOR FREE", new_user_registration_path, class: "btn astro-button" %>
+      <%= link_to "REGISTER FOR FREE", new_user_registration_path, class: "premium-action-btn primary" %>
     <% end %>
 
   </div>

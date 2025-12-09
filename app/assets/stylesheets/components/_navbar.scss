@@ -6,7 +6,6 @@
   align-items: center;
 }
 
-
 .navbar-lewagon .container-fluid {
   position: relative;
   height: 100%;
@@ -19,7 +18,6 @@
   transform: translate(-50%, -50%);
   align-items: stretch !important;
 }
-
 
 .navbar-lewagon .navbar-brand .navbar-logo {
   max-height: 100px;  //aquí controlas la altura real del logo
@@ -49,11 +47,22 @@
   margin: 0 5px; // Añade un poco de espacio alrededor del elemento <li>
 }
 .nav-item .nav-link {
-  transition: background-color 0.3s ease, color 0.3s ease;
-  border-radius: 5px; // Bordes redondeados para el fondo
+  font-size: 1rem;
+  color: #4a4a4a;
+  padding: 12px 28px; /* deja espacio interno */
+  border-radius: 50px; /* circular */
+  transition: all 0.25s ease-in-out;
 }
 .nav-item .nav-link:hover {
-  // Usamos una función de color de SASS para aligerar o oscurecer el color $primary
-  background-color: $primary;
-  color: $light-gray; // El texto se pone del color principal
+  background-color: #4b208c !important;
+  color: white !important;
+  border-radius: 40px;
+  padding: 12px 32px !important;
+}
+
+.navbar-nav .nav-link.current {
+  background-color: #4b208c !important;  /* Morado AstroMind */
+  color: white !important;
+  padding: 12px 32px !important;  /* AÚN MÁS ESPACIO */
+  border-radius: 40px !important;
 }
