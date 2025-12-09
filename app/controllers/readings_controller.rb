@@ -56,7 +56,6 @@ class ReadingsController < ApplicationController
   end
 
 
-
 #GET
   def new_horoscope
  @reading = Reading.new(reading_type: "horoscope")
@@ -82,11 +81,37 @@ class ReadingsController < ApplicationController
       - Country of birth: #{@profile.birth_country}
 
       The horoscope should:
-      - Be written in a friendly and positive tone
+      - Be written in a friendly and positive tone and mention the zodial sign
       - Mention emotional, work and health aspects.
       - Be max. 2 short paragraphs for the 3 categories.
       - include the title emotional life , health life and work life to separate the text.
-       PROMPT
+
+
+        IMPORTANT FORMATTING RULES:
+          2. For each of the 3 paragraph, use EXACTLY this format:
+
+            1. Emotional Life
+            [Description ]
+
+            2. Health Life
+            [Description ]
+
+            3. work Life
+            [Description ]
+
+          4. Use a clear line break between cards
+          5. Write in a friendly, conversational style
+          6. Do NOT use asterisks (**) or hashtags (###) in your response
+
+          Example format:
+
+          1. Emotional Life
+          This card sitting at the heart of your reading suggests...
+
+          2. Health Life
+          Sometimes, past disappointments or regrets...
+
+      PROMPT
 
     chat     = RubyLLM::Chat.new
     response = chat.ask(prompt)

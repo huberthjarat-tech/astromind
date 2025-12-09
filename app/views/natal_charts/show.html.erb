@@ -1,15 +1,57 @@
+<canvas id="stars-canvas" class="stars-background"></canvas>
 
-<h3 >Your Personalized Natal Chart Awaits</h3>
-<p>
- Based on your birth information, we will create a personalized natal chart that reveals deep insights about your personality, strengths, life path, and cosmic blueprint powered by AI.
-</p>
+<div class="premium-reading-wrapper">
 
-<% if @has_natal_chart %>
-  <p><%= @natal_chart %></p>
-<% else %>
-  <%= button_to "Generate Now", natal_chart_path, method: :post %>
-<% end %>
+  <div class="premium-reading-card">
 
-<div class="d-grid gap-2 mt-4">
- <%= link_to "🌟 More services", services_path, class: "btn btn-primary btn-lg" %>
+    <div class="premium-header">
+      <div class="cosmic-decoration">✨ 🌙 ⭐ 🌙 ✨</div>
+      <h1 class="premium-title">Your Personalized Natal Chart Awaits</h1>
+      <div class="premium-subtitle">
+        <p>
+        Based on your birth information, we will create a personalized natal chart that reveals deep insights about your personality, strengths, life path, and cosmic blueprint powered by AI.
+        </p>
+
+
+    <div class="premium-content-glass">
+
+      <%# SALUDO PERSONALIZADO %>
+      <div class="premium-greeting">
+        Dear <span class="highlight-name"><%= current_user.first_name || 'Seeker' %></span>,
+      </div>
+
+      <%# TEXTO DE LA LECTURA - USA EL HELPER %>
+      <div class="premium-actions">
+              <% if @has_natal_chart %>
+            <p><%= @natal_chart %></p>
+          <% else %>
+            <%= button_to "Generate Now", natal_chart_path, method: :post, class: "premium-action-btn primary" %>
+            </div>
+          <% end %>
+
+      </div>
+
+      <%# FIRMA MÍSTICA %>
+      <div class="premium-signature">
+        <div class="signature-line"></div>
+        <div class="signature-text">May the stars guide your path</div>
+        <div class="signature-line"></div>
+      </div>
+
+    </div>
+
+    <%# BOTONES DE ACCIÓN %>
+    <div class="premium-actions">
+      <%= link_to services_path, class: "premium-action-btn primary" do %>
+        <span class="btn-icon">🌟</span>
+        <span class="btn-text">Explore More Services</span>
+      <% end %>
+
+      <%= link_to dashboard_path, class: "premium-action-btn secondary" do %>
+        <span class="btn-icon">🏠</span>
+        <span class="btn-text">My Past</span>
+      <% end %>
+    </div>
+  </div>
 </div>
+<% content_for :body_class, 'has-stars-canvas' %>
