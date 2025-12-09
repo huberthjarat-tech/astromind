@@ -66,3 +66,121 @@
   padding: 12px 32px !important;  /* AÚN MÁS ESPACIO */
   border-radius: 40px !important;
 }
+/* ---------- AVATAR ICON (en vez de foto) ---------- */
+
+.avatar-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-left: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 20%, #9d5cf6, #4b208c);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.avatar-initial {
+  color: #ffffff;
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+/* Si usas un svg: */
+.avatar-icon-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* ---------- DROPDOWN + LOGOUT PILL ---------- */
+
+.astro-dropdown {
+  border-radius: 16px;
+  padding: 8px;
+  border: none;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.logout-pill {
+  border-radius: 999px;
+  padding: 8px 24px;
+  background: #4b208c;
+  color: #ffffff !important;
+  text-align: center;
+}
+
+.logout-pill:hover {
+  background: #6a34c8;
+  color: #ffffff !important;
+}
+
+@media (max-width: 576px) {
+
+  /* Fondo del menú desplegado */
+  .navbar-collapse {
+    background: #ffffff;
+    padding: 12px 0 20px;
+  }
+
+  .navbar-nav {
+    align-items: flex-start;
+    padding-left: 12px;
+  }
+
+  /* Estilo base */
+  .navbar-nav .nav-link {
+    width: 100%;
+    padding: 12px 18px;
+    margin: 6px 0;
+    border-radius: 12px;
+    font-size: 1.15rem;
+    color: #333333;
+    background: transparent;
+    transition: 0.2s ease-in-out;
+  }
+
+  /* Hover suave (fondo clarito y texto oscuro) */
+  .navbar-nav .nav-link:hover {
+    background: #f0e9ff; /* lavanda muy suave */
+    color: #3a256d !important; /* morado oscuro */
+  }
+
+  /* ACTIVO = morado + texto blanco */
+  .navbar-nav .nav-link.active,
+  .navbar-nav .nav-link.current,
+  .navbar-nav .nav-link:active {
+    background: #4b208c !important; /* morado AstroMind */
+    color: #ffffff !important;      /* TEXTO BLANCO */
+  }
+
+  /* Quitar avatar en mobile */
+  .avatar {
+    display: none !important;
+  }
+
+  /* Logout en mobile */
+  .logout-mobile {
+    display: block !important;
+    padding: 12px 18px;
+    margin-top: 8px;
+    font-size: 1.1rem;
+    color: #d22;
+  }
+
+}
+
+.navbar-lewagon .nav-link.astro-pill {
+  border-radius: 999px;
+  padding: 0.4rem 1.6rem;
+  
+}
+
+/* Hover / activo: morado + texto blanco */
+.navbar-lewagon .nav-link.astro-pill:hover,
+.navbar-lewagon .nav-link.astro-pill:focus,
+.navbar-lewagon .nav-link.astro-pill.active {
+  background-color: #4b208c;
+  color: #ffffff !important;  /* forzamos blanco */
+}

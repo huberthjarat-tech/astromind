@@ -15,23 +15,43 @@
             <li class="nav-item">
           <%= link_to "Profile",
                (current_user.profile ? profile_path : new_profile_path),
-                class: "nav-link" %>
+                class: "nav-link astro-pill" %>
             </li>
           <li class="nav-item">
-            <%= link_to "My future", services_path, class: "nav-link" %>
+            <%= link_to "My future", services_path, class: "nav-link astro-pill" %>
           </li>
           <li class="nav-item">
-            <%= link_to "My past", dashboard_path, class: "nav-link" %>
+            <%= link_to "My past", dashboard_path, class: "nav-link astro-pill" %>
           </li>
 
-          <li class="nav-item dropdown">
-          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
-          </a>
+
+          <li class="nav-item dropdown d-none d-sm-block">
+            <a href="#"
+              class="avatar-icon"
+              id="navbarDropdown"
+              data-bs-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false">
+              <span class="avatar-initial">☾</span>
+            </a>
+
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+              <%= link_to "Log out",
+                          destroy_user_session_path,
+                          data: { turbo_method: :delete },
+                          class: "dropdown-item logout-pill" %>
             </div>
           </li>
+
+          <!-- VERSION MOBILE DEL LOG OUT -->
+          <li class="nav-item d-block d-sm-none">
+            <%= link_to "Log out", destroy_user_session_path,
+                data: { turbo_method: :delete },
+                class: "nav-link logout-mobile" %>
+          </li>
+
+
+
         <% else %>
             <li class="nav-item">
               <%= link_to "Login", new_user_session_path, class: "nav-link login-button" %>
