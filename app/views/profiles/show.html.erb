@@ -1,32 +1,105 @@
-<div class="container my-5 ">
-  <h1 style="text-align: center">Your Astrological Profile</h1>
+<%# Canvas de estrellas de fondo %>
+<canvas id="stars-canvas" class="stars-background"></canvas>
 
-  <div class="card shadow">
-    <div class="card-body p-4">
+<div class="premium-reading-wrapper">
+  <div class="premium-reading-card">
 
-      <div class="mb-4">
-        <h3>User Information</h3>
-        <p><strong>Email:</strong> <%= current_user.email %></p>
+    <%# HEADER %>
+    <div class="premium-header">
+      <div class="cosmic-decoration">✨ 🌙 ⭐ 🌙 ✨</div>
+      <h1 class="premium-title">My Astrological Profile</h1>
+      <div class="premium-subtitle">Your cosmic identity and birth blueprint</div>
+    </div>
 
-        <% if current_user.first_name.present? %>
-          <p><strong>Name:</strong> <%= current_user.first_name %> <%= current_user.last_name %></p>
-        <% end %>
+    <%# CONTENIDO PRINCIPAL %>
+    <div class="premium-content-glass">
+
+      <%# SALUDO %>
+      <div class="premium-greeting">
+        Welcome, <span class="highlight-name"><%= current_user.first_name || current_user.email.split('@').first.capitalize %></span>
       </div>
 
-      <hr>
+      <%# USER INFORMATION %>
+      <div class="profile-section">
+        <div class="section-header">
+          <span class="section-icon">👤</span>
+          <h3 class="section-title">User Information</h3>
+        </div>
 
-      <div class="mb-4">
-        <h3>Birth Information</h3>
-        <p><strong>📅 Birth Date & Time:</strong> <%= @profile.birth_datetime.strftime("%B %d, %Y at %I:%M %p") %></p>
-        <p><strong>📍 Birth City:</strong> <%= @profile.birth_city %></p>
-        <p><strong>🌍 Birth Country:</strong> <%= @profile.birth_country %></p>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">Email</span>
+            <span class="info-value"><%= current_user.email %></span>
+          </div>
+
+          <% if current_user.first_name.present? %>
+            <div class="info-item">
+              <span class="info-label">Name</span>
+              <span class="info-value"><%= current_user.first_name %> <%= current_user.last_name %></span>
+            </div>
+          <% end %>
+        </div>
       </div>
 
+      <%# SEPARADOR %>
+      <div class="premium-divider">
+        <div class="divider-line"></div>
+        <div class="divider-icon">⭐</div>
+        <div class="divider-line"></div>
+      </div>
 
-      <div class="d-grid gap-2 mt-4">
-        <%= link_to "🌟 View your future",services_path , class: "btn astro-button" %>
+      <%# BIRTH INFORMATION %>
+      <div class="profile-section">
+        <div class="section-header">
+          <span class="section-icon">🌙</span>
+          <h3 class="section-title">Birth Information</h3>
+        </div>
+
+        <div class="birth-info-cards">
+          <div class="birth-card">
+            <div class="birth-card-icon">📅</div>
+            <div class="birth-card-label">Birth Date & Time</div>
+            <div class="birth-card-value"><%= @profile.birth_datetime.strftime("%B %d, %Y") %></div>
+            <div class="birth-card-subvalue"><%= @profile.birth_datetime.strftime("%I:%M %p") %></div>
+          </div>
+
+          <div class="birth-card">
+            <div class="birth-card-icon">📍</div>
+            <div class="birth-card-label">Birth City</div>
+            <div class="birth-card-value"><%= @profile.birth_city %></div>
+          </div>
+
+          <div class="birth-card">
+            <div class="birth-card-icon">🌍</div>
+            <div class="birth-card-label">Birth Country</div>
+            <div class="birth-card-value"><%= @profile.birth_country %></div>
+          </div>
+        </div>
+      </div>
+
+      <%# FIRMA %>
+      <div class="premium-signature">
+        <div class="signature-line"></div>
+        <div class="signature-text">Your cosmic journey begins here</div>
+        <div class="signature-line"></div>
       </div>
 
     </div>
+
+    <%# BOTONES %>
+    <div class="premium-actions">
+      <%= link_to natal_chart_path, class: "premium-action-btn primary" do %>
+        <span class="btn-icon">🌟</span>
+        <span class="btn-text">View My Natal Chart</span>
+      <% end %>
+
+      <%= link_to services_path, class: "premium-action-btn secondary" do %>
+        <span class="btn-icon">✨</span>
+        <span class="btn-text">Explore Services</span>
+      <% end %>
+    </div>
+
   </div>
 </div>
+
+<% content_for :body_class, 'has-stars-canvas' %>

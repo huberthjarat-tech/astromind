@@ -162,15 +162,6 @@ class ReadingsController < ApplicationController
     1. Start with a friendly greeting mentioning the user's name and zodiac sign
     2. For each of the 10 cards, use EXACTLY this format:
 
-
-Future — What is developing
-Conscious influence — What the user is aware of
-Unconscious influence — Hidden emotional patterns
-User’s attitude
-External factors
-Hopes and fears
-Outcome — The direction things are moving toward
-
         1. Present — Card Name
        [Description of the card's meaning]
         2. Challenge — Card Name
