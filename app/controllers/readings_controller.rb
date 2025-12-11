@@ -162,13 +162,35 @@ class ReadingsController < ApplicationController
     1. Start with a friendly greeting mentioning the user's name and zodiac sign
     2. For each of the 10 cards, use EXACTLY this format:
 
-       1. Position Name — Card Name
-       [Description of the card's meaning]
 
-       2. Position Name — Card Name
-       [Description of the card's meaning]
+Future — What is developing
+Conscious influence — What the user is aware of
+Unconscious influence — Hidden emotional patterns
+User’s attitude
+External factors
+Hopes and fears
+Outcome — The direction things are moving toward
 
-       And so on for all 10 cards.
+        1. Present — Card Name
+       [Description of the card's meaning]
+        2. Challenge — Card Name
+       [Description of the card's meaning]
+        3. Past — Card Name
+        [Description of the card's meaning]
+        4. Future — Card Name
+        [Description of the card's meaning]
+        5. Conscious — Card Name
+        [Description of the card's meaning]
+        6. Unconscious — Card Name
+        [Description of the card's meaning]
+        7. Attitude — Card Name
+        [Description of the card's meaning]
+        8. External Factors  — Card Name
+        [Description of the card's meaning]
+        9. Hope and Fears — Card Name
+        [Description of the card's meaning]
+        10. Outcome — Card Name
+        [Description of the card's meaning]
 
     3. Each card number MUST be on its own line
     4. Use a clear line break between cards

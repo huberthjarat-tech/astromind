@@ -5,10 +5,42 @@
       <p>Click the button and we’ll generate today’s horoscope based on your zodiac sign.</p>
     </div>
 
-    <%= simple_form_for @reading, url: horoscope_readings_path do |f| %>
-      <div class="premium-actions" style="text-align: center">
+
+    <%# ---------------------------------------------------- %>
+    <%# CONTROLLER PRINCIPAL DE STIMULUS %>
+    <%# ---------------------------------------------------- %>
+    <div data-controller="loading">
+
+
+      <%# FORMULARIO CON TURBO DESACTIVADO Y ACCIÓN DE SUBMIT %>
+
+    <%= simple_form_for @reading,
+    url: horoscope_readings_path,
+    html: {
+            "data-action": "submit->loading#show",
+            "data-turbo": "false"
+          } do |f| %>
+
+      <%# BOTÓN DE SUBMIT (TARGET) %>
+      <div class="premium-actions"
+      style="text-align: center"
+      data-loading-target="button">
         <%= f.button :submit, "Generate my horoscope", class: "premium-action-btn primary" %>
       </div>
     <% end %>
+
+
+      <div data-loading-target="loading"
+           class="d-none mt-4 text-center light-gray-text"
+           style="font-size: 1.5rem; font-weight: 600;">
+        ✨ The Universe is working for you… please wait ✨
+
+        <%# SPINNER DE BOOTSTRAP %>
+        <div class="spinner-border text-primary mt-3" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+   </div> <%# Cierre del data-controller="loading" %>
+
   </div>
 </div>
