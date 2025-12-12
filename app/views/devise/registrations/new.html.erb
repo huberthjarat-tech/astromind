@@ -1,33 +1,101 @@
-<h2>Sign up</h2>
+<div class="auth-page">
+  <div class="auth-container">
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+    <%# TÍTULO %>
+    <div class="auth-header">
+      <h1 class="auth-title">Create Account</h1>
+      <p class="auth-subtitle">Start your cosmic journey with AstroMind</p>
+    </div>
 
-  <div class="form-inputs">
-    <%= f.input :first_name,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "first-name" }%>
-    <%= f.input :last_name,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "last-name" }%>
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+    <%# FORMULARIO %>
+    <div class="auth-form-wrapper">
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'auth-form' }) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+
+          <%# FIRST NAME %>
+          <%= f.input :first_name,
+                      required: true,
+                      autofocus: true,
+                      placeholder: "First name",
+                      label: false,
+                      input_html: {
+                        autocomplete: "given-name",
+                        class: "auth-input"
+                      },
+                      wrapper_html: { class: "input-group" } %>
+
+          <%# LAST NAME %>
+          <%= f.input :last_name,
+                      required: true,
+                      placeholder: "Last name",
+                      label: false,
+                      input_html: {
+                        autocomplete: "family-name",
+                        class: "auth-input"
+                      },
+                      wrapper_html: { class: "input-group" } %>
+
+          <%# EMAIL %>
+          <%= f.input :email,
+                      required: true,
+                      placeholder: "your@email.com",
+                      label: false,
+                      input_html: {
+                        autocomplete: "email",
+                        class: "auth-input"
+                      },
+                      wrapper_html: { class: "input-group" } %>
+
+          <%# PASSWORD CON HINT INTEGRADO %>
+          <div class="input-group">
+            <%= f.input :password,
+                        required: true,
+                        placeholder: "Create a password",
+                        hint: false,
+                        label: false,
+                        input_html: {
+                          autocomplete: "new-password",
+                          class: "auth-input"
+                        },
+                        wrapper: false %>
+            <% if @minimum_password_length %>
+              <div class="password-hint">
+                <svg class="hint-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 0C3.13438 0 0 3.13438 0 7C0 10.8656 3.13438 14 7 14C10.8656 14 14 10.8656 14 7C14 3.13438 10.8656 0 7 0ZM7 10.5C6.65313 10.5 6.375 10.2219 6.375 9.875V7C6.375 6.65313 6.65313 6.375 7 6.375C7.34687 6.375 7.625 6.65313 7.625 7V9.875C7.625 10.2219 7.34687 10.5 7 10.5ZM7.65625 4.8125C7.65625 5.15937 7.34687 5.46875 7 5.46875C6.65313 5.46875 6.34375 5.15937 6.34375 4.8125C6.34375 4.46563 6.65313 4.15625 7 4.15625C7.34687 4.15625 7.65625 4.46563 7.65625 4.8125Z" fill="currentColor"/>
+                </svg>
+                Minimum <%= @minimum_password_length %> characters required
+              </div>
+            <% end %>
+          </div>
+
+          <%# PASSWORD CONFIRMATION %>
+          <%= f.input :password_confirmation,
+                      required: true,
+                      placeholder: "Confirm your password",
+                      label: false,
+                      input_html: {
+                        autocomplete: "new-password",
+                        class: "auth-input"
+                      },
+                      wrapper_html: { class: "input-group" } %>
+        </div>
+
+        <%# SUBMIT BUTTON %>
+        <div class="form-actions">
+          <%= f.button :submit, "Create Account", class: "auth-submit-btn" %>
+        </div>
+      <% end %>
+
+      <%# FOOTER LINKS %>
+      <div class="auth-footer">
+        <p class="auth-footer-text">
+          Already have an account?
+          <%= link_to "Sign in", new_session_path(resource_name), class: "auth-footer-link" %>
+        </p>
+      </div>
+    </div>
+
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
