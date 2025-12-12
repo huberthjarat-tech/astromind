@@ -1,5 +1,5 @@
 /* ============================================ */
-/* CARRUSEL DE TAROT - HORIZONTAL */
+/* CARRUSEL DE TAROT - HORIZONTAL CON CENTRADO */
 /* ============================================ */
 .tarot-carousel-container {
   margin-bottom: 3rem;
@@ -17,11 +17,12 @@
 .carousel-track-container {
   overflow: hidden;
   border-radius: 20px;
+  width: 100%; /* ← IMPORTANTE: Ancho completo */
 }
 
 .carousel-track {
   display: flex;
-  flex-direction: row; /* ← FORZAR HORIZONTAL */
+  flex-direction: row;
   gap: 2rem;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 2rem 0;
@@ -31,7 +32,7 @@
 /* TARJETAS HORIZONTALES */
 /* ============================================ */
 .carousel-card {
-  flex: 0 0 280px; /* ← ANCHO FIJO */
+  flex: 0 0 280px;
   opacity: 0.4;
   transform: scale(0.8);
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -148,7 +149,7 @@
 }
 
 /* ============================================ */
-/* INDICADORES - DENTRO DEL CARRUSEL */
+/* INDICADORES */
 /* ============================================ */
 .carousel-indicators {
   display: flex;
@@ -156,7 +157,7 @@
   gap: 0.75rem;
   margin-top: 1.5rem;
   padding: 1rem 0;
-  position: relative; /* ← Evita que salgan del contenedor */
+  position: relative;
 }
 
 .indicator {
@@ -209,7 +210,7 @@
 }
 
 /* ============================================ */
-/* RESPONSIVE - MOBILE */
+/* RESPONSIVE - MOBILE (CENTRADO) */
 /* ============================================ */
 @media (max-width: 768px) {
   .tarot-carousel-container {
@@ -220,8 +221,9 @@
     padding: 0 50px;
   }
 
+  /* Tarjetas más pequeñas para mobile */
   .carousel-card {
-    flex: 0 0 220px;
+    flex: 0 0 240px; /* ← Ajustado para mejor visualización */
   }
 
   .card-inner {
@@ -236,13 +238,13 @@
   }
 
   .carousel-nav {
-    width: 55px;
-    height: 55px;
+    width: 50px;
+    height: 50px;
     border-width: 2px;
   }
 
   .carousel-nav span {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 
   .carousel-indicators {
@@ -269,8 +271,9 @@
     padding: 0 40px;
   }
 
+  /* Tarjetas aún más pequeñas */
   .carousel-card {
-    flex: 0 0 200px;
+    flex: 0 0 220px; /* ← Ajustado para pantallas muy pequeñas */
   }
 
   .card-inner {
@@ -290,12 +293,12 @@
   }
 
   .carousel-nav {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
   }
 
   .carousel-nav span {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
   }
 
   .indicator {
@@ -306,5 +309,18 @@
   .indicator.active {
     width: 12px;
     height: 12px;
+  }
+}
+
+/* ============================================ */
+/* TOUCH GESTURES (MOBILE) */
+/* ============================================ */
+@media (hover: none) and (pointer: coarse) {
+  .carousel-track-container {
+    touch-action: pan-y pinch-zoom; /* ← Permitir scroll vertical */
+  }
+
+  .carousel-track {
+    touch-action: pan-x; /* ← Swipe horizontal */
   }
 }
