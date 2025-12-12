@@ -1,9 +1,15 @@
+/* ============================================ */
+/* NAVBAR BASE */
+/* ============================================ */
 .navbar-lewagon {
   background: white;
   position: relative;
-  height: 120px;
+  height: 90px;
   display: flex;
   align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  z-index: 1030;
 }
 
 .navbar-lewagon .container-fluid {
@@ -16,171 +22,340 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  align-items: stretch !important;
+  z-index: 10;
 }
 
 .navbar-lewagon .navbar-brand .navbar-logo {
-  max-height: 100px;  //aquí controlas la altura real del logo
+  max-height: 70px;
   width: auto;
   display: block;
+  transition: all 0.3s ease;
 }
 
-
-.login-button {
-  background-color: #6a0dad;  // lila
-  color: white !important;
-  padding: 0.6rem 1.5rem;
-  border-radius: 6px;
-  font-size: 1.1rem;     // aumenta tamaño del texto
-  font-weight: 600;
+/* ============================================ */
+/* DESKTOP NAVIGATION */
+/* ============================================ */
+.navbar-nav {
   display: flex;
   align-items: center;
-  height: 100%;          // ocupa toda la altura del navbar
+  gap: 0.5rem;
 }
 
-.navbar-lewagon {
-  display: flex;
-  align-items: center;
-  height: 120px;          // altura del navbar
-}
 .nav-item {
-  margin: 0 5px; // Añade un poco de espacio alrededor del elemento <li>
+  margin: 0;
 }
+
 .nav-item .nav-link {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: #4a4a4a;
-  padding: 12px 28px; /* deja espacio interno */
-  border-radius: 50px; /* circular */
+  padding: 10px 24px;
+  border-radius: 50px;
   transition: all 0.25s ease-in-out;
+  white-space: nowrap;
 }
+
 .nav-item .nav-link:hover {
   background-color: #4b208c !important;
   color: white !important;
-  border-radius: 40px;
-  padding: 12px 32px !important;
+  padding: 10px 28px !important;
 }
 
-.navbar-nav .nav-link.current {
-  background-color: #4b208c !important;  /* Morado AstroMind */
+.navbar-nav .nav-link.current,
+.navbar-nav .nav-link.active {
+  background-color: #4b208c !important;
   color: white !important;
-  padding: 12px 32px !important;  /* AÚN MÁS ESPACIO */
-  border-radius: 40px !important;
+  padding: 10px 28px !important;
+  border-radius: 50px !important;
 }
-/* ---------- AVATAR ICON (en vez de foto) ---------- */
 
+/* ============================================ */
+/* LOGIN BUTTON */
+/* ============================================ */
+.login-button {
+  background-color: #6a0dad;
+  color: white !important;
+  padding: 10px 28px;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.25s ease-in-out;
+}
+
+.login-button:hover {
+  background-color: #8b2fd5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(107, 13, 173, 0.3);
+}
+
+/* ============================================ */
+/* AVATAR DROPDOWN */
+/* ============================================ */
 .avatar-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  margin-left: 16px;
+  width: 42px;
+  height: 42px;
+  margin-left: 12px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 20%, #9d5cf6, #4b208c);
+  background: linear-gradient(135deg, #9d5cf6, #4b208c);
   text-decoration: none;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(75, 32, 140, 0.3);
+}
+
+.avatar-icon:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(75, 32, 140, 0.4);
 }
 
 .avatar-initial {
   color: #ffffff;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   line-height: 1;
 }
 
-/* Si usas un svg: */
-.avatar-icon-img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
-
-/* ---------- DROPDOWN + LOGOUT PILL ---------- */
-
-.astro-dropdown {
-  border-radius: 16px;
+.dropdown-menu {
+  border-radius: 12px;
   padding: 8px;
   border: none;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  margin-top: 8px;
 }
 
 .logout-pill {
   border-radius: 999px;
-  padding: 8px 24px;
+  padding: 10px 24px;
   background: #4b208c;
   color: #ffffff !important;
   text-align: center;
+  transition: all 0.25s ease;
+  border: none;
+  width: 100%;
 }
 
 .logout-pill:hover {
   background: #6a34c8;
   color: #ffffff !important;
+  transform: translateY(-2px);
 }
 
+/* ============================================ */
+/* MOBILE STYLES */
+/* ============================================ */
 @media (max-width: 576px) {
 
-  /* Fondo del menú desplegado */
+  /* Navbar más compacto */
+  .navbar-lewagon {
+    height: 70px;
+  }
+
+  .navbar-lewagon .navbar-brand .navbar-logo {
+    max-height: 50px;
+  }
+
+  /* Toggler */
+  .navbar-toggler {
+    border: 2px solid #4b208c;
+    border-radius: 8px;
+    padding: 6px 10px;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1031;
+  }
+
+  .navbar-toggler:focus {
+    box-shadow: 0 0 0 3px rgba(75, 32, 140, 0.2);
+    outline: none;
+  }
+
+  .navbar-toggler-icon {
+    width: 20px;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%234b208c' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  }
+
+  /* Menú desplegable */
   .navbar-collapse {
-    background: #ffffff;
-    padding: 12px 0 20px;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 20px 0 24px 0;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    z-index: 1025;
   }
 
   .navbar-nav {
-    align-items: flex-start;
-    padding-left: 12px;
+    align-items: stretch;
+    padding: 0 20px;
+    gap: 8px;
   }
 
-  /* Estilo base */
+  /* ============================================ */
+  /* LINKS - HOVER SOLO CAMBIA COLOR DE TEXTO */
+  /* ============================================ */
   .navbar-nav .nav-link {
     width: 100%;
-    padding: 12px 18px;
-    margin: 6px 0;
+    padding: 14px 20px;
+    margin: 0;
     border-radius: 12px;
-    font-size: 1.15rem;
-    color: #333333;
-    background: transparent;
-    transition: 0.2s ease-in-out;
+    font-size: 1.05rem;
+    color: #333333 !important;
+    background: transparent !important;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    text-decoration: none;
   }
 
-  /* Hover suave (fondo clarito y texto oscuro) */
-  .navbar-nav .nav-link:hover {
-    background: #f0e9ff; /* lavanda muy suave */
-    color: #3a256d !important; /* morado oscuro */
+  /* HOVER: Solo cambiar texto a morado */
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link:active,
+  .navbar-nav .nav-link:focus {
+    color: #4b208c !important; /* ← SOLO TEXTO MORADO */
+    background: transparent !important; /* ← SIN FONDO */
+    padding-left: 24px !important; /* ← Pequeño slide */
   }
 
-  /* ACTIVO = morado + texto blanco */
+  /* LINK ACTIVO: Fondo morado + texto blanco */
   .navbar-nav .nav-link.active,
-  .navbar-nav .nav-link.current,
-  .navbar-nav .nav-link:active {
-    background: #4b208c !important; /* morado AstroMind */
-    color: #ffffff !important;      /* TEXTO BLANCO */
+  .navbar-nav .nav-link.current {
+    background: linear-gradient(135deg, #4b208c, #6a34c8) !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    box-shadow: 0 3px 10px rgba(75, 32, 140, 0.4);
   }
 
-  /* Quitar avatar en mobile */
-  .avatar {
+  /* ============================================ */
+  /* LOGOUT: FONDO MORADO + TEXTO BLANCO */
+  /* ============================================ */
+  .logout-mobile {
+    display: flex !important;
+    padding: 14px 20px;
+    margin-top: 16px;
+    font-size: 1.05rem;
+    color: #ffffff !important; /* ← TEXTO BLANCO */
+    background: linear-gradient(135deg, #4b208c, #6a34c8) !important; /* ← FONDO MORADO */
+    border-radius: 12px;
+    font-weight: 600;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 3px 10px rgba(75, 32, 140, 0.4);
+    border: none;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .logout-mobile:hover,
+  .logout-mobile:active,
+  .logout-mobile:focus {
+    background: linear-gradient(135deg, #6a34c8, #8b2fd5) !important; /* ← Morado más claro */
+    color: #ffffff !important; /* ← MANTENER BLANCO */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(75, 32, 140, 0.5);
+  }
+
+  /* ============================================ */
+  /* LOGIN BUTTON: FONDO MORADO + TEXTO BLANCO */
+  /* ============================================ */
+  .login-button {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 28px;
+    background: linear-gradient(135deg, #6a0dad, #8b2fd5) !important; /* ← FONDO MORADO */
+    color: #ffffff !important; /* ← TEXTO BLANCO */
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(106, 13, 173, 0.3);
+    text-decoration: none;
+    display: flex !important;
+    transition: all 0.2s ease;
+  }
+
+  .login-button:hover,
+  .login-button:active,
+  .login-button:focus {
+    background: linear-gradient(135deg, #8b2fd5, #a855f7) !important;
+    color: #ffffff !important; /* ← MANTENER BLANCO */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(106, 13, 173, 0.4);
+  }
+
+  /* Ocultar avatar en mobile */
+  .avatar-icon,
+  .d-none.d-sm-block {
     display: none !important;
   }
+}
 
-  /* Logout en mobile */
-  .logout-mobile {
-    display: block !important;
-    padding: 12px 18px;
-    margin-top: 8px;
-    font-size: 1.1rem;
-    color: #d22;
+/* ============================================ */
+/* OVERLAY OSCURO */
+/* ============================================ */
+@media (max-width: 576px) {
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1020;
   }
 
+  body.menu-open::before {
+    opacity: 1;
+    pointer-events: all;
+  }
 }
 
-.navbar-lewagon .nav-link.astro-pill {
-  border-radius: 999px;
-  padding: 0.4rem 1.6rem;
+/* ============================================ */
+/* TABLET */
+/* ============================================ */
+@media (min-width: 577px) and (max-width: 768px) {
+  .navbar-lewagon {
+    height: 80px;
+  }
 
+  .navbar-lewagon .navbar-brand .navbar-logo {
+    max-height: 60px;
+  }
+
+  .nav-item .nav-link {
+    font-size: 0.9rem;
+    padding: 8px 18px;
+  }
 }
 
-/* Hover / activo: morado + texto blanco */
-.navbar-lewagon .nav-link.astro-pill:hover,
-.navbar-lewagon .nav-link.astro-pill:focus,
-.navbar-lewagon .nav-link.astro-pill.active {
-  background-color: #4b208c;
-  color: #ffffff !important;  /* forzamos blanco */
+/* ============================================ */
+/* ANIMACIONES */
+/* ============================================ */
+.navbar-collapse.collapsing {
+  transition: height 0.3s ease;
+}
+
+.navbar-collapse.show {
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
