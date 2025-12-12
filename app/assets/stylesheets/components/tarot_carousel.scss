@@ -1,0 +1,310 @@
+/* ============================================ */
+/* CARRUSEL DE TAROT - HORIZONTAL */
+/* ============================================ */
+.tarot-carousel-container {
+  margin-bottom: 3rem;
+  padding: 2rem 0;
+  overflow: hidden;
+}
+
+.tarot-carousel {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+.carousel-track-container {
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.carousel-track {
+  display: flex;
+  flex-direction: row; /* ← FORZAR HORIZONTAL */
+  gap: 2rem;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 2rem 0;
+}
+
+/* ============================================ */
+/* TARJETAS HORIZONTALES */
+/* ============================================ */
+.carousel-card {
+  flex: 0 0 280px; /* ← ANCHO FIJO */
+  opacity: 0.4;
+  transform: scale(0.8);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+}
+
+.carousel-card.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.card-inner {
+  position: relative;
+  background: rgba(88, 28, 135, 0.2);
+  border: 3px solid rgba(168, 85, 247, 0.4);
+  border-radius: 20px;
+  padding: 1rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.carousel-card.active .card-inner {
+  border-color: rgba(168, 85, 247, 1);
+  box-shadow: 0 15px 50px rgba(168, 85, 247, 0.6);
+}
+
+.tarot-card-image {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  display: block;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.card-label {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  color: white;
+  font-weight: 600;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  font-family: 'Georgia', serif;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-card.active .card-label {
+  opacity: 1;
+  color: #fbbf24;
+  text-shadow: 0 2px 10px rgba(251, 191, 36, 0.6);
+}
+
+/* ============================================ */
+/* BOTONES DE NAVEGACIÓN */
+/* ============================================ */
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(135deg, rgba(88, 28, 135, 0.95) 0%, rgba(168, 85, 247, 0.9) 100%);
+  border: 3px solid rgba(251, 191, 36, 0.6);
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 25px rgba(88, 28, 135, 0.4);
+}
+
+.carousel-nav:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgba(88, 28, 135, 1) 0%, rgba(168, 85, 247, 1) 100%);
+  border-color: #fbbf24;
+  box-shadow: 0 12px 35px rgba(251, 191, 36, 0.6);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-nav:active:not(:disabled) {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.carousel-nav span {
+  font-size: 2rem;
+  color: white;
+  line-height: 1;
+  font-weight: bold;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-nav.prev {
+  left: 0;
+}
+
+.carousel-nav.next {
+  right: 0;
+}
+
+.carousel-nav:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  border-color: rgba(168, 85, 247, 0.3);
+  background: rgba(88, 28, 135, 0.5);
+  box-shadow: none;
+}
+
+/* ============================================ */
+/* INDICADORES - DENTRO DEL CARRUSEL */
+/* ============================================ */
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  padding: 1rem 0;
+  position: relative; /* ← Evita que salgan del contenedor */
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(168, 85, 247, 0.3);
+  border: 2px solid rgba(168, 85, 247, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+  font-size: 0;
+  overflow: hidden;
+}
+
+.indicator:hover {
+  background: rgba(168, 85, 247, 0.6);
+  transform: scale(1.2);
+}
+
+.indicator.active {
+  background: #fbbf24;
+  border-color: #fbbf24;
+  box-shadow: 0 0 15px rgba(251, 191, 36, 0.8);
+  width: 16px;
+  height: 16px;
+}
+
+/* ============================================ */
+/* RESPONSIVE - TABLET */
+/* ============================================ */
+@media (max-width: 1024px) {
+  .tarot-carousel {
+    padding: 0 70px;
+  }
+
+  .carousel-card {
+    flex: 0 0 260px;
+  }
+
+  .card-label {
+    font-size: 1rem;
+    min-height: 2.5rem;
+  }
+
+  .carousel-nav {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* ============================================ */
+/* RESPONSIVE - MOBILE */
+/* ============================================ */
+@media (max-width: 768px) {
+  .tarot-carousel-container {
+    padding: 1.5rem 0;
+  }
+
+  .tarot-carousel {
+    padding: 0 50px;
+  }
+
+  .carousel-card {
+    flex: 0 0 220px;
+  }
+
+  .card-inner {
+    padding: 0.75rem;
+  }
+
+  .card-label {
+    font-size: 0.95rem;
+    margin-top: 0.75rem;
+    padding: 0.5rem;
+    min-height: 2.5rem;
+  }
+
+  .carousel-nav {
+    width: 55px;
+    height: 55px;
+    border-width: 2px;
+  }
+
+  .carousel-nav span {
+    font-size: 1.6rem;
+  }
+
+  .carousel-indicators {
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .indicator {
+    width: 10px;
+    height: 10px;
+  }
+
+  .indicator.active {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* ============================================ */
+/* RESPONSIVE - MOBILE PEQUEÑO */
+/* ============================================ */
+@media (max-width: 480px) {
+  .tarot-carousel {
+    padding: 0 40px;
+  }
+
+  .carousel-card {
+    flex: 0 0 200px;
+  }
+
+  .card-inner {
+    padding: 0.5rem;
+    border-radius: 15px;
+  }
+
+  .tarot-card-image {
+    border-radius: 12px;
+  }
+
+  .card-label {
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    padding: 0.4rem;
+    min-height: 2rem;
+  }
+
+  .carousel-nav {
+    width: 50px;
+    height: 50px;
+  }
+
+  .carousel-nav span {
+    font-size: 1.4rem;
+  }
+
+  .indicator {
+    width: 8px;
+    height: 8px;
+  }
+
+  .indicator.active {
+    width: 12px;
+    height: 12px;
+  }
+}

@@ -1,0 +1,53 @@
+<canvas id="stars-canvas" class="stars-background"></canvas>
+
+<div class="premium-reading-wrapper">
+
+  <div class="premium-reading-card">
+
+    <div class="premium-header">
+      <div class="cosmic-decoration">✨ 🌙 ⭐ 🌙 ✨</div>
+      <h1 class="premium-title">Your Cosmic Reading</h1>
+      <div class="premium-subtitle">
+        A glimpse into your <%= @reading.category_tarot.capitalize %> journey
+      </div>
+      <div class="premium-date">
+        <%= @reading.date.strftime("%B %d, %Y") %>
+      </div>
+    </div>
+
+    <div class="premium-content-glass">
+
+      <%# SALUDO PERSONALIZADO %>
+      <div class="premium-greeting">
+        Dear <span class="highlight-name"><%= current_user.first_name || 'Seeker' %></span>,
+      </div>
+
+      <%# TEXTO DE LA LECTURA - USA EL HELPER %>
+      <div class="premium-reading-text">
+        <%= format_tarot_reading(@reading.content) %>
+      </div>
+
+      <%# FIRMA MÍSTICA %>
+      <div class="premium-signature">
+        <div class="signature-line"></div>
+        <div class="signature-text">May the stars guide your path</div>
+        <div class="signature-line"></div>
+      </div>
+
+    </div>
+
+    <%# BOTONES DE ACCIÓN %>
+    <div class="premium-actions">
+      <%= link_to services_path, class: "premium-action-btn primary" do %>
+        <span class="btn-icon">🌟</span>
+        <span class="btn-text">Explore More Services</span>
+      <% end %>
+
+      <%= link_to dashboard_path, class: "premium-action-btn secondary" do %>
+        <span class="btn-icon">🏠</span>
+        <span class="btn-text">My Past</span>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% content_for :body_class, 'has-stars-canvas' %>

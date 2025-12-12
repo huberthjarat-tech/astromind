@@ -149,8 +149,9 @@ class ReadingsController < ApplicationController
     category = @reading.category_tarot.presence || "love"
 
     prompt = <<~PROMPT
-    You are an expert astrologer.
-    Generate a #{category} tarot reading based on this profile using the Celtic Cross spread.
+
+You are an expert astrologer specializing in the Rider-Waite Smith Tarot deck.
+    Generate a #{@reading.category_tarot} tarot reading using the Celtic Cross spread.
 
     Profile:
     - Name: #{current_user.first_name}
@@ -158,45 +159,94 @@ class ReadingsController < ApplicationController
     - City of birth: #{@profile.birth_city}
     - Country of birth: #{@profile.birth_country}
 
-    IMPORTANT FORMATTING RULES:
-    1. Start with a friendly greeting mentioning the user's name and zodiac sign
-    2. For each of the 10 cards, use EXACTLY this format:
+    ═══════════════════════════════════════════════════════════════════
+    CRITICAL INSTRUCTIONS:
+    ═══════════════════════════════════════════════════════════════════
 
-        1. Present — Card Name
-       [Description of the card's meaning]
-        2. Challenge — Card Name
-       [Description of the card's meaning]
-        3. Past — Card Name
-        [Description of the card's meaning]
-        4. Future — Card Name
-        [Description of the card's meaning]
-        5. Conscious — Card Name
-        [Description of the card's meaning]
-        6. Unconscious — Card Name
-        [Description of the card's meaning]
-        7. Attitude — Card Name
-        [Description of the card's meaning]
-        8. External Factors  — Card Name
-        [Description of the card's meaning]
-        9. Hope and Fears — Card Name
-        [Description of the card's meaning]
-        10. Outcome — Card Name
-        [Description of the card's meaning]
+    1. You will perform a REAL Celtic Cross Tarot reading
+    2. Select 10 cards from the Rider-Waite Smith deck based on the person's profile
+    3. Each card should be chosen intuitively based on their situation
+    4. Provide genuine tarot guidance, not generic advice
 
-    3. Each card number MUST be on its own line
-    4. Use a clear line break between cards
-    5. Write in a friendly, conversational style
-    6. Do NOT use asterisks (**) or hashtags (###) in your response
+    ═══════════════════════════════════════════════════════════════════
+    FORMATTING REQUIREMENTS - FOLLOW EXACTLY:
+    ═══════════════════════════════════════════════════════════════════
 
-    Example format:
-    Hello [Name]! Based on your birth details...
+    1. Start with a warm greeting (1-2 sentences):
+       "Hello [Name]! As a [Zodiac Sign], you have [brief trait]. Let's explore what the Tarot reveals about your [category] journey."
 
-    1. The Present Situation — The Lovers
-    This card sitting at the heart of your reading suggests...
+    2. Then provide all 10 cards in THIS EXACT FORMAT:
 
-    2. The Challenge — The Five of Cups
-    Sometimes, past disappointments or regrets...
+    NUMBER. POSITION — CARD NAME
+    Description of the card's meaning in this position (2-3 sentences).
 
+    EXAMPLE FORMAT (but choose your own cards):
+
+    1. Present — [Card You Choose]
+    [Your interpretation here]
+
+    2. Challenge — [Card You Choose]
+    [Your interpretation here]
+
+    [Continue for all 10 positions...]
+
+    ═══════════════════════════════════════════════════════════════════
+    THE 10 CELTIC CROSS POSITIONS (in order):
+    ═══════════════════════════════════════════════════════════════════
+
+    1. Present — Current situation
+    2. Challenge — Immediate obstacle or crossing influence
+    3. Past — Recent past that led to this moment
+    4. Future — What's approaching in the near future
+    5. Conscious — Conscious thoughts and goals
+    6. Unconscious — Hidden influences and subconscious
+    7. Attitude — Your approach and self-perception
+    8. External Factors — Environment and others' influence
+    9. Hope and Fears — Inner emotions and anxieties
+    10. Outcome — Likely outcome if current path continues
+
+    ═══════════════════════════════════════════════════════════════════
+    CARD NAMING RULES - USE EXACT NAMES:
+    ═══════════════════════════════════════════════════════════════════
+
+    MAJOR ARCANA (22 cards - include "The" where appropriate):
+    The Fool, The Magician, The High Priestess, The Empress, The Emperor,
+    The Hierophant, The Lovers, The Chariot, Strength, The Hermit,
+    Wheel of Fortune, Justice, The Hanged Man, Death, Temperance,
+    The Devil, The Tower, The Star, The Moon, The Sun, Judgement, The World
+
+    MINOR ARCANA FORMAT:
+    - Structure: "[Rank] of [Suit]"
+    - Ranks: Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten,
+             Page, Knight, Queen, King
+    - Suits: Cups, Wands, Swords, Pentacles
+
+    Examples: "Two of Cups", "King of Swords", "Ace of Wands", "Ten of Pentacles"
+
+    ═══════════════════════════════════════════════════════════════════
+    CRITICAL FORMAT RULES:
+    ═══════════════════════════════════════════════════════════════════
+
+    ✓ Each card must start: NUMBER. POSITION — CARD NAME
+    ✓ Use NUMBER followed by period: "1. " "2. " etc.
+    ✓ Use em dash (—) between position and card name
+    ✓ Card description: 2-3 sentences, conversational tone
+    ✓ NO asterisks, NO hashtags, NO bold formatting
+    ✓ Each card on its own line
+    ✓ One blank line between cards
+
+    ═══════════════════════════════════════════════════════════════════
+    IMPORTANT REMINDERS:
+    ═══════════════════════════════════════════════════════════════════
+
+    - Choose cards intuitively based on the person's profile
+    - Each reading should be unique and personalized
+    - Consider their birth date, location, and category (#{@reading.category_tarot})
+    - Provide meaningful, specific guidance
+    - Balance honesty with compassion
+    - All 10 cards must be different from each other
+
+    Generate the complete Celtic Cross reading now.
      PROMPT
 
     chat     = RubyLLM::Chat.new
